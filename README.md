@@ -147,7 +147,7 @@ Examples:
 #  Project Structure
 
 ```text
-EventForge/
+TechNexus/
 │
 ├── index.html
 ├── events.html
