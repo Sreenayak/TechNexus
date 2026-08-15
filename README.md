@@ -160,7 +160,9 @@ TechNexus/
 │   ├── script.js
 │   ├── events.js
 │   └── registration.js   
-│
+│___assets/
+|   |___Icons
+|
 ├── screenshots/
 │   ├── home.png
 │   ├── events.png
