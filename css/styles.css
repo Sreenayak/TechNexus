@@ -150,17 +150,49 @@ img {
 
     align-items: center;
 
-    gap: 8px;
+    gap: 12px;
 
     font-size: 1.35rem;
 
     font-weight: 800;
 
     letter-spacing: -0.5px;
+
+    line-height: 1;
 }
 
 
-.logo span:last-child {
+.logo-image {
+    width: 52px;
+
+    height: 52px;
+
+    display: block;
+
+    flex-shrink: 0;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 10px 25px
+        rgba(99, 102, 241, 0.18);
+}
+
+
+.brand-text {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 0;
+}
+
+
+.brand-text span {
     color: #6366f1;
 }
 
