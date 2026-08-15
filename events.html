@@ -1,191 +1,437 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Events - TechNexus</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Events | EventForge</title>
+
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
-<body class="light-mode">
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-content">
-                <div class="logo">
-                    <i class="fas fa-rocket"></i> TechNexus
-                </div>
-                <div class="nav-links">
-                    <a href="index.html">Home</a>
-                    <a href="events.html" class="active">Events</a>
-                    <a href="index.html#about">About</a>
-                </div>
-                <div class="nav-actions">
-                    <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                    <button class="hamburger" id="hamburger">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                </div>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="container nav-container">
+
+            <a href="index.html" class="logo">
+                <span class="logo-icon">⚡</span>
+                Event<span>Forge</span>
+            </a>
+
+            <nav class="navbar" id="navbar">
+
+                <a href="index.html" class="nav-link">
+                    Home
+                </a>
+
+                <a href="events.html" class="nav-link active">
+                    Events
+                </a>
+
+                <a href="index.html#about" class="nav-link">
+                    About
+                </a>
+
+                <a href="index.html#contact" class="nav-link">
+                    Contact
+                </a>
+
+            </nav>
+
+            <div class="nav-actions">
+
+                <button
+                    class="theme-btn"
+                    id="themeToggle">
+                    🌙
+                </button>
+
+                <button
+                    class="menu-btn"
+                    id="menuBtn">
+                    ☰
+                </button>
+
             </div>
+
         </div>
-    </nav>
 
-    <!-- Events Section -->
-    <section class="events-section">
-        <div class="container">
-            <div class="events-header">
-                <h1>Explore All Events</h1>
-                <p>Find and register for technical events that interest you</p>
+    </header>
+
+
+    <main>
+
+        <!-- PAGE HERO -->
+
+        <section class="page-hero">
+
+            <div class="container">
+
+                <span class="section-label">
+                    EVENT DISCOVERY
+                </span>
+
+                <h1>
+                    Explore <span>Tech Events</span>
+                </h1>
+
+                <p>
+                    Find the perfect event to learn, compete and connect.
+                </p>
+
             </div>
 
-            <!-- Search & Filter Sidebar -->
-            <div class="events-container">
-                <aside class="filter-sidebar">
-                    <!-- Search -->
-                    <div class="filter-group">
-                        <h3>Search Events</h3>
-                        <input type="text" id="searchInput" class="search-input" placeholder="Search events...">
+        </section>
+
+
+        <!-- EVENTS -->
+
+        <section class="events-section section">
+
+            <div class="container">
+
+                <!-- SEARCH -->
+
+                <div class="event-controls">
+
+                    <div class="search-box">
+
+                        <span>🔍</span>
+
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Search events by name...">
+
                     </div>
 
-                    <!-- Category Filter -->
-                    <div class="filter-group">
-                        <h3>Category</h3>
-                        <div class="filter-options" id="categoryFilter">
-                            <label>
-                                <input type="checkbox" value="all" checked>
+
+                    <div class="filter-box">
+
+                        <select id="categoryFilter">
+
+                            <option value="all">
                                 All Categories
-                            </label>
-                            <label>
-                                <input type="checkbox" value="Web Development">
+                            </option>
+
+                            <option value="Hackathon">
+                                Hackathon
+                            </option>
+
+                            <option value="AI">
+                                AI & ML
+                            </option>
+
+                            <option value="Web">
                                 Web Development
-                            </label>
-                            <label>
-                                <input type="checkbox" value="AI & ML">
-                                AI & Machine Learning
-                            </label>
-                            <label>
-                                <input type="checkbox" value="Mobile Development">
-                                Mobile Development
-                            </label>
-                            <label>
-                                <input type="checkbox" value="Cloud Computing">
-                                Cloud Computing
-                            </label>
-                            <label>
-                                <input type="checkbox" value="Cybersecurity">
+                            </option>
+
+                            <option value="Cybersecurity">
                                 Cybersecurity
-                            </label>
-                            <label>
-                                <input type="checkbox" value="IoT">
-                                IoT & Embedded Systems
-                            </label>
-                        </div>
+                            </option>
+
+                            <option value="Cloud">
+                                Cloud Computing
+                            </option>
+
+                            <option value="Coding">
+                                Coding
+                            </option>
+
+                        </select>
+
                     </div>
 
-                    <!-- Difficulty Filter -->
-                    <div class="filter-group">
-                        <h3>Difficulty Level</h3>
-                        <div class="filter-options" id="difficultyFilter">
-                            <label>
-                                <input type="checkbox" value="all" checked>
-                                All Levels
-                            </label>
-                            <label>
-                                <input type="checkbox" value="Beginner">
-                                Beginner
-                            </label>
-                            <label>
-                                <input type="checkbox" value="Intermediate">
-                                Intermediate
-                            </label>
-                            <label>
-                                <input type="checkbox" value="Advanced">
-                                Advanced
-                            </label>
-                        </div>
+                </div>
+
+
+                <div class="results-info">
+
+                    <p id="resultsCount">
+                        Showing events
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="event-grid full-events"
+                    id="eventsContainer">
+
+                    <!-- Events loaded using JavaScript -->
+
+                </div>
+
+
+                <div
+                    class="no-events"
+                    id="noEvents"
+                    style="display:none;">
+
+                    <div>
+                        🔍
                     </div>
 
-                    <!-- Clear Filters -->
-                    <button class="btn btn-secondary" id="clearFilters">Clear All Filters</button>
-                </aside>
+                    <h3>
+                        No events found
+                    </h3>
 
-                <!-- Events Grid -->
-                <main class="events-main">
-                    <div class="events-toolbar">
-                        <div class="results-count">
-                            <span id="resultsCount">Showing events</span>
-                        </div>
-                        <div class="sort-options">
-                            <select id="sortBy" class="sort-select">
-                                <option value="newest">Newest First</option>
-                                <option value="date">Earliest Date</option>
-                                <option value="name">Event Name (A-Z)</option>
-                            </select>
-                        </div>
-                    </div>
+                    <p>
+                        Try another search or category.
+                    </p>
 
-                    <div class="events-grid" id="eventsGrid">
-                        <!-- Events will be populated by JavaScript -->
-                    </div>
+                </div>
 
-                    <div id="noResults" class="no-results" style="display: none;">
-                        <i class="fas fa-search"></i>
-                        <h3>No events found</h3>
-                        <p>Try adjusting your search or filters</p>
-                    </div>
-                </main>
             </div>
-        </div>
-    </section>
 
-    <!-- Event Details Modal -->
-    <div id="eventModal" class="modal">
+        </section>
+
+    </main>
+
+
+    <!-- REGISTRATION MODAL -->
+
+    <div
+        class="modal"
+        id="registrationModal">
+
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <div id="modalBody">
-                <!-- Event details will be populated here -->
+
+            <button
+                class="modal-close"
+                id="closeModal">
+                ×
+            </button>
+
+            <div class="modal-header">
+
+                <span class="modal-icon">
+                    📝
+                </span>
+
+                <h2>
+                    Register for Event
+                </h2>
+
+                <p id="selectedEvent">
+                    Event Registration
+                </p>
+
             </div>
+
+
+            <form id="registrationForm">
+
+                <input
+                    type="hidden"
+                    id="eventName"
+                    name="eventName">
+
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your full name">
+
+                    <small class="error" id="nameError"></small>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email">
+
+                    <small class="error" id="emailError"></small>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="college">
+                        College
+                    </label>
+
+                    <input
+                        type="text"
+                        id="college"
+                        name="college"
+                        placeholder="Enter your college name">
+
+                    <small class="error" id="collegeError"></small>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="eventSelection">
+                        Select Event
+                    </label>
+
+                    <select id="eventSelection">
+
+                        <option value="">
+                            Select an event
+                        </option>
+
+                    </select>
+
+                    <small class="error" id="eventError"></small>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary form-submit">
+
+                    Complete Registration →
+
+                </button>
+
+            </form>
+
+
+            <div
+                class="success-message"
+                id="successMessage">
+
+                <div class="success-icon">
+                    ✓
+                </div>
+
+                <h3>
+                    Registration Successful!
+                </h3>
+
+                <p>
+                    You have successfully registered for the event.
+                </p>
+
+                <button
+                    class="btn btn-primary"
+                    id="successClose">
+
+                    Done
+
+                </button>
+
+            </div>
+
         </div>
+
     </div>
 
-    <!-- Footer -->
+
+    <!-- FOOTER -->
+
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>TechNexus</h3>
-                    <p>Your gateway to amazing tech events and opportunities</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="events.html">Events</a></li>
-                        <li><a href="index.html#about">About</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <div class="social-links">
-                        <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
+
+        <div class="container footer-grid">
+
+            <div class="footer-brand">
+
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">⚡</span>
+                    Event<span>Forge</span>
+                </a>
+
+                <p>
+                    Discover. Connect. Innovate.
+                </p>
+
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 TechNexus. All rights reserved.</p>
+
+
+            <div class="footer-column">
+
+                <h4>Navigation</h4>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="events.html">
+                    Events
+                </a>
+
+                <a href="index.html#about">
+                    About
+                </a>
+
             </div>
+
+
+            <div class="footer-column">
+
+                <h4>Categories</h4>
+
+                <a href="#">Hackathons</a>
+                <a href="#">AI & ML</a>
+                <a href="#">Cybersecurity</a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>Connect</h4>
+
+                <a href="#">LinkedIn</a>
+                <a href="#">GitHub</a>
+                <a href="#">Instagram</a>
+
+            </div>
+
         </div>
+
+
+        <div class="footer-bottom">
+
+            <div class="container">
+
+                <p>
+                    © 2026 EventForge. All rights reserved.
+                </p>
+
+            </div>
+
+        </div>
+
     </footer>
 
-    <script src="js/script.js"></script>
+
     <script src="js/events.js"></script>
+    <script src="js/registration.js"></script>
+    <script src="js/script.js"></script>
+
 </body>
 </html>
