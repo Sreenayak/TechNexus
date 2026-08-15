@@ -1,127 +1,290 @@
+// ==========================================
+// REGISTRATION SYSTEM
+// ==========================================
 
-function getAllRegistrations() {
-    return JSON.parse(localStorage.getItem('registrations') || '[]');
-}
+document.addEventListener("DOMContentLoaded", () => {
 
-/**
- * Save registrations to localStorage
- */
-function saveRegistrations(registrations) {
-    localStorage.setItem('registrations', JSON.stringify(registrations));
-}
+    const modal =
+        document.getElementById("registrationModal");
 
-/**
- * Get user's registrations
- */
-function getUserRegistrations(email) {
-    const registrations = getAllRegistrations();
-    return registrations.filter(reg => reg.email === email);
-}
+    const closeModal =
+        document.getElementById("closeModal");
 
-/**
- * Check if user is registered for an event
- */
-function isUserRegisteredForEvent(eventId, email) {
-    const registrations = getUserRegistrations(email);
-    return registrations.some(reg => reg.eventId === eventId);
-}
+    const form =
+        document.getElementById("registrationForm");
 
-/**
- * Get registration details for an event
- */
-function getRegistrationDetails(eventId) {
-    const registrations = getAllRegistrations();
-    return registrations.find(reg => reg.eventId === eventId);
-}
+    const successMessage =
+        document.getElementById("successMessage");
 
-/**
- * Cancel registration
- */
-function cancelRegistration(eventId, email) {
-    let registrations = getAllRegistrations();
-    registrations = registrations.filter(
-        reg => !(reg.eventId === eventId && reg.email === email)
-    );
-    saveRegistrations(registrations);
-    return true;
-}
+    const successClose =
+        document.getElementById("successClose");
 
-/**
- * Get registration statistics
- */
-function getRegistrationStats() {
-    const registrations = getAllRegistrations();
-    return {
-        totalRegistrations: registrations.length,
-        uniqueUsers: new Set(registrations.map(r => r.email)).size,
-        eventStats: getEventRegistrationStats()
-    };
-}
+    const eventSelection =
+        document.getElementById("eventSelection");
 
-/**
- * Get registration count per event
- */
-function getEventRegistrationStats() {
-    const registrations = getAllRegistrations();
-    const stats = {};
-    
-    registrations.forEach(reg => {
-        stats[reg.eventId] = (stats[reg.eventId] || 0) + 1;
-    });
-    
-    return stats;
-}
 
-/**
- * Export registrations to CSV
- */
-function exportRegistrationsToCSV() {
-    const registrations = getAllRegistrations();
-    
-    if (registrations.length === 0) {
-        alert('No registrations to export');
-        return;
+    // ======================================
+    // ADD EVENTS TO SELECT
+    // ======================================
+
+    if (eventSelection && typeof events !== "undefined") {
+
+        events.forEach(event => {
+
+            const option =
+                document.createElement("option");
+
+            option.value =
+                event.name;
+
+            option.textContent =
+                event.name;
+
+            eventSelection.appendChild(option);
+
+        });
+
     }
 
-    let csv = 'Event ID,Event Name,Name,Email,Phone,College,Year,Experience,Message,Registered At\n';
-    
-    registrations.forEach(reg => {
-        const event = eventsData.find(e => e.id === reg.eventId);
-        csv += `${reg.eventId},"${event ? event.name : 'Unknown'}","${reg.fullName}","${reg.email}","${reg.phone}","${reg.college}","${reg.year}","${reg.experience}","${reg.message || ''}","${new Date(reg.registeredAt).toLocaleString()}"\n`;
-    });
 
-    downloadCSV(csv, 'TechNexus-Registrations.csv');
-}
+    // ======================================
+    // CLOSE MODAL
+    // ======================================
 
-/**
- * Download CSV file
- */
-function downloadCSV(csv, filename) {
-    const blob = new Blob([csv], { type: 'text/csv' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = filename;
-    a.click();
-    window.URL.revokeObjectURL(url);
-}
+    function closeRegistrationModal() {
 
-// ==================== INITIALIZATION ====================
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize registration listeners if on events page
-    if (document.getElementById('registrationForm')) {
-        setupRegistrationListeners();
+        modal.classList.remove("show");
+
+        document.body.classList.remove("modal-open");
+
+        if (form) {
+
+            form.reset();
+
+        }
+
+        if (successMessage) {
+
+            successMessage.classList.remove("show");
+
+        }
+
+        if (form) {
+
+            form.style.display = "block";
+
+        }
+
     }
-});
 
-function setupRegistrationListeners() {
-    const form = document.getElementById('registrationForm');
+
+    if (closeModal) {
+
+        closeModal.addEventListener(
+            "click",
+            closeRegistrationModal
+        );
+
+    }
+
+
+    if (successClose) {
+
+        successClose.addEventListener(
+            "click",
+            closeRegistrationModal
+        );
+
+    }
+
+
+    // Close by clicking outside
+
+    if (modal) {
+
+        modal.addEventListener("click", event => {
+
+            if (event.target === modal) {
+
+                closeRegistrationModal();
+
+            }
+
+        });
+
+    }
+
+
+    // ======================================
+    // VALIDATION
+    // ======================================
+
+    function validateForm() {
+
+        let valid = true;
+
+
+        const name =
+            document.getElementById("name");
+
+        const email =
+            document.getElementById("email");
+
+        const college =
+            document.getElementById("college");
+
+        const selectedEvent =
+            document.getElementById("eventSelection");
+
+
+        const nameError =
+            document.getElementById("nameError");
+
+        const emailError =
+            document.getElementById("emailError");
+
+        const collegeError =
+            document.getElementById("collegeError");
+
+        const eventError =
+            document.getElementById("eventError");
+
+
+        // Clear errors
+
+        nameError.textContent = "";
+        emailError.textContent = "";
+        collegeError.textContent = "";
+        eventError.textContent = "";
+
+
+        // Name
+
+        if (name.value.trim().length < 2) {
+
+            nameError.textContent =
+                "Please enter your name.";
+
+            valid = false;
+
+        }
+
+
+        // Email
+
+        const emailPattern =
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+        if (!emailPattern.test(email.value.trim())) {
+
+            emailError.textContent =
+                "Please enter a valid email.";
+
+            valid = false;
+
+        }
+
+
+        // College
+
+        if (college.value.trim().length < 2) {
+
+            collegeError.textContent =
+                "Please enter your college name.";
+
+            valid = false;
+
+        }
+
+
+        // Event
+
+        if (!selectedEvent.value) {
+
+            eventError.textContent =
+                "Please select an event.";
+
+            valid = false;
+
+        }
+
+
+        return valid;
+
+    }
+
+
+    // ======================================
+    // SUBMIT FORM
+    // ======================================
+
     if (form) {
-        form.addEventListener('submit', handleRegistrationSubmit);
-    }
-}
 
-function handleRegistrationSubmit(e) {
-    e.preventDefault();
-    submitRegistration(e);
-}
+        form.addEventListener("submit", event => {
+
+            event.preventDefault();
+
+
+            if (!validateForm()) {
+
+                return;
+
+            }
+
+
+            const registration = {
+
+                name:
+                    document.getElementById("name").value.trim(),
+
+                email:
+                    document.getElementById("email").value.trim(),
+
+                college:
+                    document.getElementById("college").value.trim(),
+
+                event:
+                    document.getElementById("eventSelection").value,
+
+                registeredAt:
+                    new Date().toISOString()
+
+            };
+
+
+            // =================================
+            // LOCAL STORAGE
+            // =================================
+
+            let registrations =
+                JSON.parse(
+                    localStorage.getItem("eventRegistrations")
+                ) || [];
+
+
+            registrations.push(registration);
+
+
+            localStorage.setItem(
+                "eventRegistrations",
+                JSON.stringify(registrations)
+            );
+
+
+            // =================================
+            // SHOW SUCCESS
+            // =================================
+
+            form.style.display =
+                "none";
+
+            successMessage.classList.add(
+                "show"
+            );
+
+        });
+
+    }
+
+});
