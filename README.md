@@ -153,18 +153,13 @@ TechNexus/
 ├── events.html
 │
 ├── css/
-│   ├── style.css
+│   ├── styles.css
 │   └── responsive.css
 │
 ├── js/
 │   ├── script.js
 │   ├── events.js
-│   └── registration.js
-│
-├── assets/
-│   ├── images/
-│   ├── icons/
-│   └── logo/
+│   └── registration.js   
 │
 ├── screenshots/
 │   ├── home.png
