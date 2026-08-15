@@ -1732,10 +1732,23 @@ img {
             255,
             0.08
         );
+
+    text-align: center;
+}
+
+
+.footer-bottom .container {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
 }
 
 
 .footer-bottom p {
+    margin: 0;
+
     color: #64748b;
 
     font-size: 0.8rem;
